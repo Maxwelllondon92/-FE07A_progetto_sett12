@@ -1,0 +1,140 @@
+<mat-tab-group>
+  <mat-tab label="Popolari">
+    <div
+      class="container d-flex flex-wrap justify-content-center align-content-center"
+    >
+      <div
+        class="spinner-border text-light my-5"
+        role="status"
+        *ngIf="isFetching"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <mat-card class="example-card mt-4 mx-4" *ngFor="let movie of popular">
+        <mat-card-header>
+          <mat-card-title>
+            {{ movie.title }}
+          </mat-card-title>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="{{ this.posterUrl }}{{ movie.poster_path }}"
+          alt="{{ movie.title }}"
+        />
+        <mat-card-actions>
+          <div
+            class="spinner-grow text-danger"
+            role="status"
+            *ngIf="isFetchingFavs"
+          ></div>
+          <button
+            mat-button
+            (click)="toggleFav(movie.id)"
+            *ngIf="!isFetchingFavs"
+          >
+            <span
+              *ngIf="!favoritesIds.includes(movie.id)"
+              class="material-icons"
+              >favorite_border</span
+            >
+            <span
+              *ngIf="favoritesIds.includes(movie.id)"
+              class="material-icons"
+              style="color: red"
+              >favorite</span
+            >
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-tab>
+  <mat-tab label="Top Rated">
+    <div
+      class="container d-flex flex-wrap justify-content-center align-content-center"
+    >
+      <div
+        class="spinner-border text-light my-5"
+        role="status"
+        *ngIf="isFetching"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <mat-card class="example-card mt-4 mx-4" *ngFor="let movie of topRated">
+        <mat-card-header>
+          <mat-card-title>
+            {{ movie.title }}
+          </mat-card-title>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="{{ this.posterUrl }}{{ movie.poster_path }}"
+          alt="{{ movie.title }}"
+        />
+        <mat-card-actions>
+          <div
+            class="spinner-grow text-danger"
+            role="status"
+            *ngIf="isFetchingFavs"
+          ></div>
+          <button
+            mat-button
+            (click)="toggleFav(movie.id)"
+            *ngIf="!isFetchingFavs"
+          >
+            <span
+              *ngIf="!favoritesIds.includes(movie.id)"
+              class="material-icons"
+              >favorite_border</span
+            >
+            <span
+              *ngIf="favoritesIds.includes(movie.id)"
+              class="material-icons"
+              style="color: red"
+              >favorite</span
+            >
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-tab>
+  <mat-tab label="I miei Preferiti">
+    <div
+      class="container d-flex flex-wrap justify-content-center align-content-center"
+    >
+      <div
+        class="spinner-border text-light my-5"
+        role="status"
+        *ngIf="isFetching"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <mat-card class="example-card mt-4 mx-4" *ngFor="let movie of popular">
+        <mat-card-header>
+          <mat-card-title>
+            {{ movie.title }}
+          </mat-card-title>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="{{ this.posterUrl }}{{ movie.poster_path }}"
+          alt="{{ movie.title }}"
+        />
+        <mat-card-actions>
+          <button mat-button>
+            <span
+              *ngIf="!favoritesIds.includes(movie.id)"
+              class="material-icons"
+              >favorite_border</span
+            >
+            <span
+              *ngIf="favoritesIds.includes(movie.id)"
+              class="material-icons"
+              style="color: red"
+              >favorite</span
+            >
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-tab>
+</mat-tab-group>

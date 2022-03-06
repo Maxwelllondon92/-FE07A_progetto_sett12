@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center align-items-center h-75">
+  <div class="auth-container">
+    <div class="spinner-border text-light" role="status" *ngIf="isLoading">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="alert alert-danger" *ngIf="error">
+      <p>{{error}}</p>
+    </div>
+    <form *ngIf="!isLoading" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          name="username"
+          id="username"
+          formControlName="username"
+        />
+        <mat-error *ngIf="signupForm.invalid">{{ getUsernameErrorMessage() }}</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          name="email"
+          id="email"
+          placeholder="pat@example.com"
+          formControlName="email"
+        />
+        <mat-error *ngIf="signupForm.invalid">{{ getEmailErrorMessage() }}</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          id="password"
+          name="password"
+          formControlName="password"
+        />
+        <mat-error *ngIf="signupForm.invalid">{{ getPasswordErrorMessage() }}</mat-error>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">Registrati</button>
+      <button mat-raised-button routerLink="/login">Accedi</button>
+    </form>
+  </div>
+</div>
